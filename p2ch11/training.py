@@ -13,9 +13,9 @@ from torch.optim import SGD, Adam
 from torch.utils.data import DataLoader
 
 from util.util import enumerateWithEstimate
-from .dsets import LunaDataset
+from p2ch11.dsets import LunaDataset
 from util.logconf import logging
-from .model import LunaModel
+from p2ch11.model import LunaModel
 
 log = logging.getLogger(__name__)
 # log.setLevel(logging.WARN)
@@ -36,7 +36,7 @@ class LunaTrainingApp:
         parser = argparse.ArgumentParser()
         parser.add_argument('--num-workers',
             help='Number of worker processes for background data loading',
-            default=8,
+            default=6,
             type=int,
         )
         parser.add_argument('--batch-size',

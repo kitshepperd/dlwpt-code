@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "dlwpt-code"
+version = "0.1.0"
+description = ""
+authors = ["kit <kit@humn.ai>"]
+readme = "README.md"
+packages = [{include = "p2ch11"},
+{include="util"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+blosc = "^1.11.1"
+diskcache = "4.1.0"
+h5py = "^3.7.0"
+jupyterlab = "^3.5.2"
+matplotlib = "^3.6.2"
+numpy = "^1.24.1"
+torch = "^1.13.1"
+Pillow = "^9.3.0"
+scikit-image = "^0.19.3"
+scipy = "^1.9.3"
+SimpleITK = "^2.2.1"
+ipyvolume = "^0.5.2"
+black = "^22.12.0"
+nb-black = "^1.0.7"
+pandas = "^1.5.2"
+tensorboard = "^2.11.0"
+tqdm = "^4.65.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -80,6 +80,17 @@ def getCandidateInfoList(requireOnDisk_bool=True):
     candidateInfo_list.sort(reverse=True)
     return candidateInfo_list
 
+@functools.lru_cache(1, typed=True)
+def getCt(series_uid):
+    return Ct(series_uid)
+
+
+@raw_cache.memoize(typed=True)
+def getCtRawCandidate(series_uid, center_xyz, width_irc):
+    ct = getCt(series_uid)
+    ct_chunk, center_irc = ct.getRawCandidate(center_xyz, width_irc)
+    return ct_chunk, center_irc
+
 class Ct:
     def __init__(self, series_uid):
         mhd_path = glob.glob(
@@ -134,17 +145,6 @@ class Ct:
         ct_chunk = self.hu_a[tuple(slice_list)]
 
         return ct_chunk, center_irc
-
-
-@functools.lru_cache(1, typed=True)
-def getCt(series_uid):
-    return Ct(series_uid)
-
-@raw_cache.memoize(typed=True)
-def getCtRawCandidate(series_uid, center_xyz, width_irc):
-    ct = getCt(series_uid)
-    ct_chunk, center_irc = ct.getRawCandidate(center_xyz, width_irc)
-    return ct_chunk, center_irc
 
 class LunaDataset(Dataset):
     def __init__(self,
